@@ -1,0 +1,80 @@
+ping.c: In function ‘main’:
+ping.c:10:20: error: storage size of ‘sock’ isn’t known
+   10 |  struct sockadr_in sock;
+      |                    ^~~~
+core.c:7:8: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘ttl’
+    7 |  * set ttl to 64,   tll time  time to live how many router the packet will go through , ttl exist on ip header
+      |        ^~~
+core.c:7:8: error: unknown type name ‘ttl’
+core.c:8:21: warning: missing terminating ' character
+    8 |  * set time out to 1's
+      |                     ^
+core.c:8:21: error: missing terminating ' character
+    8 |  * set time out to 1's
+      |                     ^~ 
+core.c: In function ‘ft_ping’:
+core.c:50:2: error: unknown type name ‘sockaddr_in’; use ‘struct’ keyword to refer to the type
+   50 |  sockaddr_in target_addr;
+      |  ^~~~~~~~~~~
+      |  struct 
+core.c:59:3: warning: implicit declaration of function ‘_error’; did you mean ‘herror’? [-Wimplicit-function-declaration]
+   59 |   _error("setsockopt :")
+      |   ^~~~~~
+      |   herror
+core.c:59:25: error: expected ‘;’ before ‘}’ token
+   59 |   _error("setsockopt :")
+      |                         ^
+      |                         ;
+   60 |  }
+      |  ~                       
+core.c:71:22: error: incompatible types when assigning to type ‘struct <anonymous>’ from type ‘__pid_t’ {aka ‘int’}
+   71 |   ping.hdr.un.echo = getpid();
+      |                      ^~~~~~
+core.c:73:27: error: ‘pckt’ undeclared (first use in this function)
+   73 |   for (i = 0; i < sizeof (pckt.msg) -1 ;i++)
+      |                           ^~~~
+core.c:73:27: note: each undeclared identifier is reported only once for each function it appears in
+core.c:76:31: error: ‘msg_count’ undeclared (first use in this function)
+   76 |   ping.hdr.un.echo.sequence = msg_count++;
+      |                               ^~~~~~~~~
+core.c:79:10: error: ‘PING_SLEEP_RATE’ undeclared (first use in this function)
+   79 |   usleep(PING_SLEEP_RATE);
+      |          ^~~~~~~~~~~~~~~
+core.c:81:3: warning: implicit declaration of function ‘getimeofday’ [-Wimplicit-function-declaration]
+   81 |   getimeofday(&start, NULL);
+      |   ^~~~~~~~~~~
+core.c:85:67: error: ‘addr’ undeclared (first use in this function); did you mean ‘h_addr’?
+   85 |   check = sendto(sfd,&ping, sizeof(t_ping), 0, (struct sockaddr *)addr, sizeof (sockaddr_in));
+      |                                                                   ^~~~
+      |                                                                   h_addr
+core.c:85:81: error: ‘sockaddr_in’ undeclared (first use in this function)
+   85 |   check = sendto(sfd,&ping, sizeof(t_ping), 0, (struct sockaddr *)addr, sizeof (sockaddr_in));
+      |                                                                                 ^~~~~~~~~~~
+core.c:91:48: warning: passing argument 4 of ‘recvfrom’ makes integer from pointer without a cast [-Wint-conversion]
+   91 |   check = recvfrom(sfd, &ping, sizeof(t_ping), (struct sockaddr *)&target_addr, &addrlen);
+      |                                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                |
+      |                                                struct sockaddr *
+In file included from ping.h:5,
+                 from core.c:1:
+/usr/include/x86_64-linux-gnu/sys/socket.h:164:9: note: expected ‘int’ but argument is of type ‘struct sockaddr *’
+  164 |     int __flags, __SOCKADDR_ARG __addr,
+      |     ~~~~^~~~~~~
+core.c:91:81: warning: passing argument 5 of ‘recvfrom’ from incompatible pointer type [-Wincompatible-pointer-types]
+   91 |   check = recvfrom(sfd, &ping, sizeof(t_ping), (struct sockaddr *)&target_addr, &addrlen);
+      |                                                                                 ^~~~~~~~
+      |                                                                                 |
+      |                                                                                 socklen_t * {aka unsigned int *}
+In file included from ping.h:5,
+                 from core.c:1:
+/usr/include/x86_64-linux-gnu/sys/socket.h:164:33: note: expected ‘struct sockaddr * restrict’ but argument is of type ‘socklen_t *’ {aka ‘unsigned int *’}
+  164 |     int __flags, __SOCKADDR_ARG __addr,
+      |                                 ^
+core.c:91:11: error: too few arguments to function ‘recvfrom’
+   91 |   check = recvfrom(sfd, &ping, sizeof(t_ping), (struct sockaddr *)&target_addr, &addrlen);
+      |           ^~~~~~~~
+In file included from ping.h:5,
+                 from core.c:1:
+/usr/include/x86_64-linux-gnu/sys/socket.h:163:16: note: declared here
+  163 | extern ssize_t recvfrom (int __fd, void *__restrict __buf, size_t __n,
+      |                ^~~~~~~~
